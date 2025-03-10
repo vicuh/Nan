@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>CLUB VICUH - Vivre la Culture Haïtienne</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background: #00209F;
+            color: white;
+            padding: 10px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: #DA291C;
+            margin-right: 15px;
+            border-radius: 50%;
+        }
+
+        .club-name {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        nav {
+            background: #DA291C;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00209F;
+        }
+
+        .marquee-container {
+            background: #f8f8f8;
+            color: #00209F;
+            padding: 5px 0;
+        }
+
+        .marquee {
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+
+        #date-heure {
+            font-size: 1.1em;
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="logo-container">
+                <div class="logo"></div>
+                <h1 class="club-name">CLUB VICUH</h1>
+            </div>
+            <div id="date-heure"></div>
+        </div>
+
+        <nav>
+            <a href="accueil.html">Accueil</a>
+            <a href="actualites.html">Actualités</a>
+            <a href="evenements.html">Événements</a>
+            <a href="biographie.html">Biographie</a>
+            <a href="archives.html">Archives</a>
+            <a href="agenda.html">Agenda</a>
+            <a href="contact.html">Contact</a>
+            <a href="adhesion.html">Adhésion</a>
+        </nav>
+
+        <div class="marquee-container">
+            <marquee class="marquee" behavior="scroll" direction="left">
+                Devise nationale : "L'Union Fait La Force" | 
+                Héros nationaux : Toussaint Louverture, Jean-Jacques Dessalines, Catherine Flon | 
+                Patrimoines : Citadelle Laferrière, Palais Sans-Souci, Cathédrale de Port-au-Prince
+            </marquee>
+        </div>
+    </header>
+
+    <script>
+        function updateDateTime() {
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric', 
+                hour: 'numeric', 
+                minute: 'numeric',
+                hour12: true 
+            };
+            
+            const dateHeure = new Date().toLocaleDateString('fr-FR', options);
+            document.getElementById('date-heure').textContent = dateHeure;
+        }
+
+        // Mise à jour initiale et toutes les minutes
+        updateDateTime();
+        setInterval(updateDateTime, 60000);
+
+        // Effet survol pour les liens
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('mouseover', function() {
+                this.style.color = '#FFD700';
+            });
+            link.addEventListener('mouseout', function() {
+                this.style.color = 'white';
+            });
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLUB VICUH - Événements</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Styles spécifiques aux événements */
+        .events-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .event-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .event-date {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(218, 41, 28, 0.9);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .event-date .day {
+            font-size: 1.5em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .event-content {
+            padding: 20px;
+        }
+
+        .event-category {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin: 10px 0;
+        }
+
+        .culturel {
+            background: #00209F;
+            color: white;
+        }
+
+        .education {
+            background: #FFD700;
+            color: #000;
+        }
+
+        .communaute {
+            background: #DA291C;
+            color: white;
+        }
+
+        .event-title {
+            color: #00209F;
+            margin: 10px 0;
+            min-height: 60px;
+        }
+
+        .event-info {
+            color: #666;
+            margin: 10px 0;
+        }
+
+        .event-info i {
+            margin-right: 8px;
+            color: #DA291C;
+        }
+
+        .event-description {
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .register-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: #00209F;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .register-btn:hover {
+            background: #DA291C;
+        }
+
+        .event-filter {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .events-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Entête -->
+    <header>...</header>
+
+    <main>
+        <h1 class="page-title">Événements à Venir</h1>
+
+        <div class="event-filter">
+            <button class="filter-btn active" data-filter="all">Tous</button>
+            <button class="filter-btn" data-filter="culturel">Culturel</button>
+            <button class="filter-btn" data-filter="education">Éducation</button>
+            <button class="filter-btn" data-filter="communaute">Communauté</button>
+        </div>
+
+        <div class="events-container">
+            <!-- Événement 1 -->
+            <div class="event-card" data-category="culturel">
+                <img src="event1.jpg" alt="Festival de danse" class="event-image">
+                <div class="event-date">
+                    <span class="day">25</span>
+                    <span>Nov 2024</span>
+                </div>
+                <div class="event-content">
+                    <span class="event-category culturel">Culturel</span>
+                    <h2 class="event-title">Festival de Danse Traditionnelle</h2>
+                    <div class="event-info">
+                        <i class="fas fa-map-marker-alt"></i>Place des Héros, Port-au-Prince
+                    </div>
+                    <div class="event-info">
+                        <i class="fas fa-clock"></i>16:00 - 22:00
+                    </div>
+                    <p class="event-description">Célébration des danses folkloriques avec des groupes venus des 10 départements.</p>
+                    <button class="register-btn">S'inscrire</button>
+                </div>
+            </div>
+
+            <!-- Événement 2 -->
+            <div class="event-card" data-category="education">
+                <img src="event2.jpg" alt="Atelier éducatif" class="event-image">
+                <div class="event-date">
+                    <span class="day">30</span>
+                    <span>Nov 2024</span>
+                </div>
+                <div class="event-content">
+                    <span class="event-category education">Éducation</span>
+                    <h2 class="event-title">Atelier d'Histoire Haïtienne</h2>
+                    <div class="event-info">
+                        <i class="fas fa-map-marker-alt"></i>Bibliothèque Nationale
+                    </div>
+                    <div class="event-info">
+                        <i class="fas fa-clock"></i>10:00 - 13:00
+                    </div>
+                    <p class="event-description">Session interactive sur les héros de l'indépendance avec des historiens renommés.</p>
+                    <button class="register-btn">S'inscrire</button>
+                </div>
+            </div>
+
+            <!-- Événement 3 -->
+            <div class="event-card" data-category="communaute">
+                <img src="event3.jpg" alt="Collecte de fonds" class="event-image">
+                <div class="event-date">
+                    <span class="day">5</span>
+                    <span>Déc 2024</span>
+                </div>
+                <div class="event-content">
+                    <span class="event-category communaute">Communauté</span>
+                    <h2 class="event-title">Collecte de Fournitures Scolaires</h2>
+                    <div class="event-info">
+                        <i class="fas fa-map-marker-alt"></i>Siège du CLUB VICUH
+                    </div>
+                    <div class="event-info">
+                        <i class="fas fa-clock"></i>09:00 - 17:00
+                    </div>
+                    <p class="event-description">Campagne de soutien aux écoles rurales de la Grand'Anse.</p>
+                    <button class="register-btn">Participer</button>
+                </div>
+            </div>
+
+            <!-- Événement 4 -->
+            <div class="event-card" data-category="culturel">
+                <img src="event4.jpg" alt="Exposition artistique" class="event-image">
+                <div class="event-date">
+                    <span class="day">12</span>
+                    <span>Déc 2024</span>
+                </div>
+                <div class="event-content">
+                    <span class="event-category culturel">Culturel</span>
+                    <h2 class="event-title">Exposition d'Art Naïf</h2>
+                    <div class="event-info">
+                        <i class="fas fa-map-marker-alt"></i>Musée d'Art Haïtien
+                    </div>
+                    <div class="event-info">
+                        <i class="fas fa-clock"></i>09:00 - 18:00 (Jusqu'au 20 déc.)
+                    </div>
+                    <p class="event-description">Découverte des œuvres de 50 artistes contemporains.</p>
+                    <button class="register-btn">Réserver</button>
+                </div>
+            </div>
+
+            <!-- Événement 5 -->
+            <div class="event-card" data-category="education">
+                <img src="event5.jpg" alt="Conférence jeunesse" class="event-image">
+                <div class="event-date">
+                    <span class="day">15</span>
+                    <span>Jan 2025</span>
+                </div>
+                <div class="event-content">
+                    <span class="event-category education">Éducation</span>
+                    <h2 class="event-title">Forum Jeunesse et Entrepreneuriat</h2>
+                    <div class="event-info">
+                        <i class="fas fa-map-marker-alt"></i>Hôtel Karibe Convention Center
+                    </div>
+                    <div class="event-info">
+                        <i class="fas fa-clock"></i>08:30 - 16:00
+                    </div>
+                    <p class="event-description">Ateliers pratiques et réseautage pour jeunes entrepreneurs.</p>
+                    <button class="register-btn">S'inscrire</button>
+                </div>
+            </div>
+
+            <!-- Événement 6 -->
+            <div class="event-card" data-category="communaute">
+                <img src="event6.jpg" alt="Nettoyage plage" class="event-image">
+                <div class="event-date">
+                    <span class="day">22</span>
+                    <span>Fév 2025</span>
+                </div>
+                <div class="event-content">
+                    <span class="event-category communaute">Communauté</span>
+                    <h2 class="event-title">Journée Écologique</h2>
+                    <div class="event-info">
+                        <i class="fas fa-map-marker-alt"></i>Plage de Jacmel
+                    </div>
+                    <div class="event-info">
+                        <i class="fas fa-clock"></i>06:00 - 12:00
+                    </div>
+                    <p class="event-description">Opération de nettoyage côtier et sensibilisation environnementale.</p>
+                    <button class="register-btn">Rejoindre</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Pied de page -->
+    <footer>...</footer>
+
+    <script>
+        // Filtrage des événements
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                const eventCards = document.querySelectorAll('.event-card');
+
+                eventCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => card.style.opacity = '1', 50);
+                    } else {
+                        card.style.opacity = '0';
+                        setTimeout(() => card.style.display = 'none', 300);
+                    }
+                });
+            });
+        });
+
+        // Animation au défilement
+        window.addEventListener('scroll', function() {
+            document.querySelectorAll('.event-card').forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                if (cardTop < window.innerHeight - 100) {
+                    card.style.opacity = '1';
+                }
+            });
+        });
+
+        // Gestion des inscriptions
+        document.querySelectorAll('.register-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const eventTitle = this.closest('.event-card').querySelector('.event-title').textContent;
+                alert(`Merci pour votre intérêt pour "${eventTitle}"! Un formulaire d'inscription s'ouvrira bientôt.`);
+            });
+        });
+    </script>
+</body>
+</html>
+

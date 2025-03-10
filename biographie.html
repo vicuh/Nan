@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>CLUB VICUH - Vivre la Culture Haïtienne</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background: #00209F;
+            color: white;
+            padding: 10px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: #DA291C;
+            margin-right: 15px;
+            border-radius: 50%;
+        }
+
+        .club-name {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        nav {
+            background: #DA291C;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00209F;
+        }
+
+        .marquee-container {
+            background: #f8f8f8;
+            color: #00209F;
+            padding: 5px 0;
+        }
+
+        .marquee {
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+
+        #date-heure {
+            font-size: 1.1em;
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="logo-container">
+                <div class="logo"></div>
+                <h1 class="club-name">CLUB VICUH</h1>
+            </div>
+            <div id="date-heure"></div>
+        </div>
+
+        <nav>
+            <a href="accueil.html">Accueil</a>
+            <a href="actualites.html">Actualités</a>
+            <a href="evenements.html">Événements</a>
+            <a href="biographie.html">Biographie</a>
+            <a href="archives.html">Archives</a>
+            <a href="agenda.html">Agenda</a>
+            <a href="contact.html">Contact</a>
+            <a href="adhesion.html">Adhésion</a>
+        </nav>
+
+        <div class="marquee-container">
+            <marquee class="marquee" behavior="scroll" direction="left">
+                Devise nationale : "L'Union Fait La Force" | 
+                Héros nationaux : Toussaint Louverture, Jean-Jacques Dessalines, Catherine Flon | 
+                Patrimoines : Citadelle Laferrière, Palais Sans-Souci, Cathédrale de Port-au-Prince
+            </marquee>
+        </div>
+    </header>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLUB VICUH - Notre Histoire</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Styles spécifiques à la biographie */
+        .bio-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .history-section {
+            background: rgba(0, 32, 159, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #DA291C;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .member-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .member-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 3px solid #00209F;
+        }
+
+        .member-role {
+            color: #DA291C;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .location-section {
+            background: #f8f8f8;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 300px;
+            background: #ddd;
+            border-radius: 10px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline-item {
+            padding: 20px;
+            margin-left: 30px;
+            border-left: 3px solid #00209F;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -10px;
+            top: 25px;
+            width: 15px;
+            height: 15px;
+            background: #DA291C;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Entête -->
+    <header></header>
+
+    <main>
+        <h1 class="page-title">Notre Histoire</h1>
+
+        <div class="bio-container">
+            <!-- Section Fondation -->
+            <section class="history-section">
+                <h2>Naissance du CLUB VICUH</h2>
+                <p>Fondé en juin 2018 à Haut la Cour (Estère, Artibonite), notre club est né d'une passion commune pour :</p>
+                <ul>
+                    <li>🟡 Valoriser le patrimoine culturel haïtien</li>
+                    <li>🔵 Créer des espaces de développement pour la jeunesse</li>
+                    <li>🔴 Promouvoir l'action collective et solidaire</li>
+                </ul>
+                <div class="map-placeholder">
+                    <i class="fas fa-map-marker-alt"></i> Localisation : Haut la Cour, Estère
+                </div>
+            </section>
+
+            <!-- Équipe dirigeante -->
+            <section>
+                <h2 class="section-title">Notre Équipe Fondatrice</h2>
+                <div class="team-grid">
+                    <!-- Président -->
+                    <div class="member-card">
+                        <img src="president.jpg" alt="Président" class="member-photo">
+                        <h3>Jackenson BENJAMIN</h3>
+                        <div class="member-role">Président Fondateur</div>
+                        <p>"Notre culture est notre force motrice"</p>
+                    </div>
+
+                    <!-- Vice-président -->
+                    <div class="member-card">
+                        <img src="vice-president.jpg" alt="Vice-président" class="member-photo">
+                        <h3>Élie Laurent Garciano</h3>
+                        <div class="member-role">Vice-président</div>
+                        <p>"L'union fait notre puissance"</p>
+                    </div>
+
+                    <!-- Trésorière -->
+                    <div class="member-card">
+                        <img src="tresoriere.jpg" alt="Trésorière" class="member-photo">
+                        <h3>Richelda Bruno</h3>
+                        <div class="member-role">Trésorière</div>
+                        <p>"Une gestion transparente pour un avenir radieux"</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chronologie -->
+            <section class="timeline">
+                <h2>Parcours du Club</h2>
+                <div class="timeline-item">
+                    <h3>2018 - Fondation</h3>
+                    <p>Création officielle avec 15 membres fondateurs</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2019 - Première Grande Action</h3>
+                    <p>Organisation du Festival Jeunesse et Culture</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2020 - Projet Éducatif</h3>
+                    <p>Lancement des ateliers de formation professionnelle</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2022 - Expansion</h3>
+                    <p>Ouverture de 3 nouvelles antennes départementales</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2023 - Reconnaissance</h3>
+                    <p>Prix National de l'Engagement Associatif</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2024 - Projets</h3>
+                    <p>Centre Culturel Multimédia en construction</p>
+                </div>
+            </section>
+
+            <!-- Section Valeurs -->
+            <section class="values-section">
+                <h2>Nos Engagements</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Solidarité</h3>
+                        <p>Plus de 500 jeunes formés depuis 2018</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="fas fa-book"></i>
+                        <h3>Éducation</h3>
+                        <p>15 ateliers thématiques par an</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="fas fa-monument"></i>
+                        <h3>Patrimoine</h3>
+                        <p>30 sites culturels valorisés</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Pied de page -->
+    <footer></footer>
+
+    <script>
+        // Animation des cartes de membres
+        document.querySelectorAll('.member-card').forEach(card => {
+            card.addEventListener('mouseover', function() {
+                this.style.boxShadow = '0 8px 15px rgba(0,0,0,0.2)';
+            });
+            card.addEventListener('mouseout', function() {
+                this.style.boxShadow = '0 4px 6px rgba(0,0,0,0.1)';
+            });
+        });
+
+        // Affichage dynamique de l'année en cours
+        document.querySelectorAll('.current-year').forEach(el => {
+            el.textContent = new Date().getFullYear();
+        });
+
+        // Animation de la timeline
+        window.addEventListener('scroll', function() {
+            document.querySelectorAll('.timeline-item').forEach((item, index) => {
+                const itemTop = item.getBoundingClientRect().top;
+                if (itemTop < window.innerHeight * 0.8) {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateX(0)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+    <script>
+        function updateDateTime() {
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric', 
+                hour: 'numeric', 
+                minute: 'numeric',
+                hour12: true 
+            };
+            
+            const dateHeure = new Date().toLocaleDateString('fr-FR', options);
+            document.getElementById('date-heure').textContent = dateHeure;
+        }
+
+        // Mise à jour initiale et toutes les minutes
+        updateDateTime();
+        setInterval(updateDateTime, 60000);
+
+        // Effet survol pour les liens
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('mouseover', function() {
+                this.style.color = '#FFD700';
+            });
+            link.addEventListener('mouseout', function() {
+                this.style.color = 'white';
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Contactez-nous</h3>
+            <p>Route Nationale#1, Haut la Cour, l'Estère, Haïti</p>
+            <p>(+509 ) 43 07 8619 - 35 20 6456</p>
+            <p>clubvicuhh@gmail.com</p>
+            <div class="social-icons">
+                <a href="#" class="fab fa-facebook"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-youtube"></a>
+                <a href="#" class="fas fa-envelope"></a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h3>Liens rapides</h3>
+            <ul>
+                <li><a href="adhesion.html">Devenir membre</a></li>
+                <li><a href="agenda.html">Prochains événements</a></li>
+                <li><a href="archives.html">Galerie culturelle</a></li>
+                <li><a href="contact.html">Demande de partenariat</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Notre Mission</h3>
+            <p>Promouvoir le patrimoine haïtien à travers des actions concrètes, soutenir la jeunesse et préserver notre identité culturelle pour les générations futures.</p>
+            <img src="drapo-ayiti.png" alt="Drapeau Haïtien" class="flag">
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <marquee behavior="alternate" direction="left">
+            🎶 "Ayiti cheri, se la vi nou genyen!" - Un peuple fort dans sa culture 🇭🇹
+        </marquee>
+        
+        <div class="legal">
+            <p>© <span id="current-year"></span> CLUB VICUH - Tous droits réservés</p>
+            <p><a href="politique.html">Politique de confidentialité</a> | <a href="conditions.html">Conditions d'utilisation</a></p>
+        </div>
+        
+        <button id="back-to-top" title="Remonter en haut">↑</button>
+    </div>
+</footer>
+
+<style>
+    footer {
+        background: #00209F;
+        color: white;
+        font-family: 'Arial', sans-serif;
+        margin-top: 50px;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .footer-section h3 {
+        color: #DA291C;
+        margin-bottom: 20px;
+        border-left: 4px solid #FFD700;
+        padding-left: 10px;
+    }
+
+    .footer-section p {
+        line-height: 1.6;
+        margin: 10px 0;
+    }
+
+    .social-icons {
+        margin-top: 20px;
+    }
+
+    .social-icons a {
+        color: white;
+        font-size: 24px;
+        margin-right: 15px;
+        transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+        color: #FFD700;
+    }
+
+    .footer-section ul {
+        list-style: none;
+    }
+
+    .footer-section ul li {
+        margin: 10px 0;
+    }
+
+    .footer-section ul li a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .footer-section ul li a:hover {
+        color: #FFD700;
+        text-decoration: underline;
+    }
+
+    .flag {
+        width: 100px;
+        margin-top: 15px;
+        border: 2px solid white;
+    }
+
+    .footer-bottom {
+        background: #0d1b3a;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+    }
+
+    .footer-bottom marquee {
+        color: #FFD700;
+        font-style: italic;
+        margin-bottom: 15px;
+    }
+
+    .legal {
+        margin: 15px 0;
+    }
+
+    .legal a {
+        color: #DA291C;
+        margin: 0 10px;
+    }
+
+    #back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #DA291C;
+        color: white;
+        border: none;
+        padding: 12px 15px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        transition: background 0.3s;
+    }
+
+    #back-to-top:hover {
+        background: #FFD700;
+    }
+
+    @media (max-width: 768px) {
+        .footer-content {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    // Année actuelle
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Bouton remonter en haut
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById('back-to-top').style.display = 'block';
+        } else {
+            document.getElementById('back-to-top').style.display = 'none';
+        }
+    };
+
+    document.getElementById('back-to-top').addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Animation au survol des liens
+    document.querySelectorAll('.footer-section a').forEach(link => {
+        link.addEventListener('mouseover', function() {
+            this.style.transform = 'translateX(5px)';
+        });
+        link.addEventListener('mouseout', function() {
+            this.style.transform = 'translateX(0)';
+        });
+    });
+</script>

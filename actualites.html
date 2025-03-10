@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>CLUB VICUH - Vivre la Culture Haïtienne</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background: #00209F;
+            color: white;
+            padding: 10px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: #DA291C;
+            margin-right: 15px;
+            border-radius: 50%;
+        }
+
+        .club-name {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        nav {
+            background: #DA291C;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00209F;
+        }
+
+        .marquee-container {
+            background: #f8f8f8;
+            color: #00209F;
+            padding: 5px 0;
+        }
+
+        .marquee {
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+
+        #date-heure {
+            font-size: 1.1em;
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="logo-container">
+                <div class="logo"></div>
+                <h1 class="club-name">CLUB VICUH</h1>
+            </div>
+            <div id="date-heure"></div>
+        </div>
+
+        <nav>
+            <a href="accueil.html">Accueil</a>
+            <a href="actualites.html">Actualités</a>
+            <a href="evenements.html">Événements</a>
+            <a href="biographie.html">Biographie</a>
+            <a href="archives.html">Archives</a>
+            <a href="agenda.html">Agenda</a>
+            <a href="contact.html">Contact</a>
+            <a href="adhesion.html">Adhésion</a>
+        </nav>
+
+        <div class="marquee-container">
+            <marquee class="marquee" behavior="scroll" direction="left">
+                Devise nationale : "L'Union Fait La Force" | 
+                Héros nationaux : Toussaint Louverture, Jean-Jacques Dessalines, Catherine Flon | 
+                Patrimoines : Citadelle Laferrière, Palais Sans-Souci, Cathédrale de Port-au-Prince
+            </marquee>
+        </div>
+    </header>
+
+    <script>
+        function updateDateTime() {
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric', 
+                hour: 'numeric', 
+                minute: 'numeric',
+                hour12: true 
+            };
+            
+            const dateHeure = new Date().toLocaleDateString('fr-FR', options);
+            document.getElementById('date-heure').textContent = dateHeure;
+        }
+
+        // Mise à jour initiale et toutes les minutes
+        updateDateTime();
+        setInterval(updateDateTime, 60000);
+
+        // Effet survol pour les liens
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('mouseover', function() {
+                this.style.color = '#FFD700';
+            });
+            link.addEventListener('mouseout', function() {
+                this.style.color = 'white';
+            });
+        });
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLUB VICUH - Actualités</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Styles spécifiques à la page Actualités */
+        .news-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-category {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+        }
+
+        .local {
+            background: #DA291C;
+            color: white;
+        }
+
+        .international {
+            background: #00209F;
+            color: white;
+        }
+
+        .culture {
+            background: #FFD700;
+            color: #000;
+        }
+
+        .news-date {
+            color: #666;
+            font-size: 0.9em;
+            margin: 10px 0;
+        }
+
+        .news-title {
+            color: #00209F;
+            margin: 10px 0;
+            min-height: 60px;
+        }
+
+        .news-excerpt {
+            color: #444;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            display: inline-block;
+            color: #DA291C;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .read-more:hover {
+            color: #00209F;
+        }
+
+        .news-filter {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .filter-btn {
+            margin: 5px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background: #f0f0f0;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active {
+            background: #00209F;
+            color: white;
+        }
+
+        .pagination {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .page-number {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 0 5px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .page-number.active {
+            background: #DA291C;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .news-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Entête -->
+    <header></header>
+
+    <main>
+        <h1 class="page-title">Actualités</h1>
+
+        <div class="news-filter">
+            <button class="filter-btn active" data-filter="all">Tous</button>
+            <button class="filter-btn" data-filter="local">Haïti</button>
+            <button class="filter-btn" data-filter="international">International</button>
+            <button class="filter-btn" data-filter="culture">Culture</button>
+        </div>
+
+        <div class="news-container">
+            <!-- Article 1 -->
+            <article class="news-card" data-category="local">
+                <img src="news1.jpg" alt="Éducation" class="news-image">
+                <div class="news-content">
+                    <span class="news-category local">Haïti</span>
+                    <span class="news-date">15 Octobre 2024</span>
+                    <h2 class="news-title">Nouveau programme éducatif pour les jeunes artistes</h2>
+                    <p class="news-excerpt">Le ministère de la Culture lance une initiative pour former 500 jeunes aux arts traditionnels...</p>
+                    <a href="#" class="read-more">Lire plus →</a>
+                </div>
+            </article>
+
+            <!-- Article 2 -->
+            <article class="news-card" data-category="international">
+                <img src="news2.jpg" alt="Festival international" class="news-image">
+                <div class="news-content">
+                    <span class="news-category international">International</span>
+                    <span class="news-date">14 Octobre 2024</span>
+                    <h2 class="news-title">Participation haïtienne au Festival Mondial des Cultures</h2>
+                    <p class="news-excerpt">Une délégation de 20 artistes haïtiens représentera le pays à Paris...</p>
+                    <a href="#" class="read-more">Lire plus →</a>
+                </div>
+            </article>
+
+            <!-- Article 3 -->
+            <article class="news-card" data-category="culture">
+                <img src="news3.jpg" alt="Patrimoine" class="news-image">
+                <div class="news-content">
+                    <span class="news-category culture">Patrimoine</span>
+                    <span class="news-date">13 Octobre 2024</span>
+                    <h2 class="news-title">Restauration de la Citadelle Laferrière</h2>
+                    <p class="news-excerpt">Un projet de restauration ambitieux débutera en 2025 pour préserver ce joyau historique...</p>
+                    <a href="#" class="read-more">Lire plus →</a>
+                </div>
+            </article>
+
+            <!-- Ajoutez d'autres articles suivant le même modèle -->
+        </div>
+
+        <div class="pagination">
+            <span class="page-number active">1</span>
+            <span class="page-number">2</span>
+            <span class="page-number">3</span>
+        </div>
+    </main>
+
+    <!-- Pied de page -->
+    <footer></footer>
+
+    <script>
+        // Filtrage des actualités
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Retirer la classe active de tous les boutons
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                // Ajouter la classe active au bouton cliqué
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                const newsCards = document.querySelectorAll('.news-card');
+
+                newsCards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                        setTimeout(() => card.style.opacity = '1', 50);
+                    } else {
+                        card.style.opacity = '0';
+                        setTimeout(() => card.style.display = 'none', 300);
+                    }
+                });
+            });
+        });
+
+        // Animation au défilement
+        window.addEventListener('scroll', function() {
+            document.querySelectorAll('.news-card').forEach(card => {
+                const cardTop = card.getBoundingClientRect().top;
+                if (cardTop < window.innerHeight - 100) {
+                    card.style.opacity = '1';
+                }
+            });
+        });
+
+        // Pagination
+        document.querySelectorAll('.page-number').forEach(page => {
+            page.addEventListener('click', function() {
+                document.querySelectorAll('.page-number').forEach(p => p.classList.remove('active'));
+                this.classList.add('active');
+                // Ajouter ici la logique de chargement de page
+            });
+        });
+    </script>
+</body>
+</html>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Contactez-nous</h3>
+            <p>Route Nationale#1, Haut la Cour, l'Estère, Haïti</p>
+            <p>(+509 ) 43 07 8619 - 35 20 6456</p>
+            <p>clubvicuhh@gmail.com</p>
+            <div class="social-icons">
+                <a href="#" class="fab fa-facebook"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-youtube"></a>
+                <a href="#" class="fas fa-envelope"></a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h3>Liens rapides</h3>
+            <ul>
+                <li><a href="adhesion.html">Devenir membre</a></li>
+                <li><a href="agenda.html">Prochains événements</a></li>
+                <li><a href="archives.html">Galerie culturelle</a></li>
+                <li><a href="contact.html">Demande de partenariat</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Notre Mission</h3>
+            <p>Promouvoir le patrimoine haïtien à travers des actions concrètes, soutenir la jeunesse et préserver notre identité culturelle pour les générations futures.</p>
+            <img src="drapo-ayiti.png" alt="Drapeau Haïtien" class="flag">
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <marquee behavior="alternate" direction="left">
+            🎶 "Ayiti cheri, se la vi nou genyen!" - Un peuple fort dans sa culture 🇭🇹
+        </marquee>
+        
+        <div class="legal">
+            <p>© <span id="current-year"></span> CLUB VICUH - Tous droits réservés</p>
+            <p><a href="politique.html">Politique de confidentialité</a> | <a href="conditions.html">Conditions d'utilisation</a></p>
+        </div>
+        
+        <button id="back-to-top" title="Remonter en haut">↑</button>
+    </div>
+</footer>
+
+<style>
+    footer {
+        background: #00209F;
+        color: white;
+        font-family: 'Arial', sans-serif;
+        margin-top: 50px;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .footer-section h3 {
+        color: #DA291C;
+        margin-bottom: 20px;
+        border-left: 4px solid #FFD700;
+        padding-left: 10px;
+    }
+
+    .footer-section p {
+        line-height: 1.6;
+        margin: 10px 0;
+    }
+
+    .social-icons {
+        margin-top: 20px;
+    }
+
+    .social-icons a {
+        color: white;
+        font-size: 24px;
+        margin-right: 15px;
+        transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+        color: #FFD700;
+    }
+
+    .footer-section ul {
+        list-style: none;
+    }
+
+    .footer-section ul li {
+        margin: 10px 0;
+    }
+
+    .footer-section ul li a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .footer-section ul li a:hover {
+        color: #FFD700;
+        text-decoration: underline;
+    }
+
+    .flag {
+        width: 100px;
+        margin-top: 15px;
+        border: 2px solid white;
+    }
+
+    .footer-bottom {
+        background: #0d1b3a;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+    }
+
+    .footer-bottom marquee {
+        color: #FFD700;
+        font-style: italic;
+        margin-bottom: 15px;
+    }
+
+    .legal {
+        margin: 15px 0;
+    }
+
+    .legal a {
+        color: #DA291C;
+        margin: 0 10px;
+    }
+
+    #back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #DA291C;
+        color: white;
+        border: none;
+        padding: 12px 15px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        transition: background 0.3s;
+    }
+
+    #back-to-top:hover {
+        background: #FFD700;
+    }
+
+    @media (max-width: 768px) {
+        .footer-content {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    // Année actuelle
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Bouton remonter en haut
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById('back-to-top').style.display = 'block';
+        } else {
+            document.getElementById('back-to-top').style.display = 'none';
+        }
+    };
+
+    document.getElementById('back-to-top').addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Animation au survol des liens
+    document.querySelectorAll('.footer-section a').forEach(link => {
+        link.addEventListener('mouseover', function() {
+            this.style.transform = 'translateX(5px)';
+        });
+        link.addEventListener('mouseout', function() {
+            this.style.transform = 'translateX(0)';
+        });
+    });
+</script>

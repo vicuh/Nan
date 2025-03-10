@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>CLUB VICUH - Vivre la Culture Haïtienne</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background: #00209F;
+            color: white;
+            padding: 10px;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: #DA291C;
+            margin-right: 15px;
+            border-radius: 50%;
+        }
+
+        .club-name {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        nav {
+            background: #DA291C;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 1.1em;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #00209F;
+        }
+
+        .marquee-container {
+            background: #f8f8f8;
+            color: #00209F;
+            padding: 5px 0;
+        }
+
+        .marquee {
+            font-size: 0.9em;
+            margin: 5px 0;
+        }
+
+        #date-heure {
+            font-size: 1.1em;
+            color: #FFD700;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="logo-container">
+                <div class="logo"></div>
+                <h1 class="club-name">CLUB VICUH</h1>
+            </div>
+            <div id="date-heure"></div>
+        </div>
+
+        <nav>
+            <a href="accueil.html">Accueil</a>
+            <a href="actualites.html">Actualités</a>
+            <a href="evenements.html">Événements</a>
+            <a href="biographie.html">Biographie</a>
+            <a href="archives.html">Archives</a>
+            <a href="agenda.html">Agenda</a>
+            <a href="contact.html">Contact</a>
+            <a href="adhesion.html">Adhésion</a>
+        </nav>
+
+        <div class="marquee-container">
+            <marquee class="marquee" behavior="scroll" direction="left">
+                Devise nationale : "L'Union Fait La Force" | 
+                Héros nationaux : Toussaint Louverture, Jean-Jacques Dessalines, Catherine Flon | 
+                Patrimoines : Citadelle Laferrière, Palais Sans-Souci, Cathédrale de Port-au-Prince
+            </marquee>
+        </div>
+    </header>
+
+    <script>
+        function updateDateTime() {
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric', 
+                hour: 'numeric', 
+                minute: 'numeric',
+                hour12: true 
+            };
+            
+            const dateHeure = new Date().toLocaleDateString('fr-FR', options);
+            document.getElementById('date-heure').textContent = dateHeure;
+        }
+
+        // Mise à jour initiale et toutes les minutes
+        updateDateTime();
+        setInterval(updateDateTime, 60000);
+
+        // Effet survol pour les liens
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('mouseover', function() {
+                this.style.color = '#FFD700';
+            });
+            link.addEventListener('mouseout', function() {
+                this.style.color = 'white';
+            });
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLUB VICUH - Adhésion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Styles spécifiques à la page d'adhésion */
+        .membership-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 40px;
+        }
+
+        .form-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .benefits-sidebar {
+            background: rgba(0, 32, 159, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #00209F;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #00209F;
+            outline: none;
+        }
+
+        .membership-types {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .membership-card {
+            border: 2px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .membership-card.selected {
+            border-color: #DA291C;
+            background: rgba(218, 41, 28, 0.05);
+        }
+
+        .payment-methods {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .payment-card {
+            padding: 15px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .payment-card.selected {
+            border-color: #00209F;
+        }
+
+        .submit-btn {
+            background: #DA291C;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #00209F;
+        }
+
+        .benefits-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .benefits-list li {
+            margin: 15px 0;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .benefits-list i {
+            color: #DA291C;
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+            .membership-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Entête -->
+    <header></header>
+
+    <main>
+        <h1 class="page-title">Devenez Membre</h1>
+
+        <div class="membership-container">
+            <!-- Formulaire d'adhésion -->
+            <section class="form-section">
+                <form id="membershipForm">
+                    <!-- Informations personnelles -->
+                    <div class="form-group">
+                        <h3><i class="fas fa-user"></i> Informations Personnelles</h3>
+                        <div class="form-grid">
+                            <div>
+                                <label>Prénom *</label>
+                                <input type="text" required>
+                            </div>
+                            <div>
+                                <label>Nom *</label>
+                                <input type="text" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Coordonnées -->
+                    <div class="form-group">
+                        <h3><i class="fas fa-address-book"></i> Coordonnées</h3>
+                        <div class="form-grid">
+                            <div>
+                                <label>Email *</label>
+                                <input type="email" required>
+                            </div>
+                            <div>
+                                <label>Téléphone *</label>
+                                <input type="tel" required>
+                            </div>
+                            <div>
+                                <label>Date de Naissance *</label>
+                                <input type="date" required>
+                            </div>
+                            <div>
+                                <label>Profession</label>
+                                <input type="text">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Type d'adhésion -->
+                    <div class="form-group">
+                        <h3><i class="fas fa-id-card"></i> Type de Membre</h3>
+                        <div class="membership-types">
+                            <div class="membership-card" data-type="student">
+                                <h4>Étudiant</h4>
+                                <p>500 HTG/an</p>
+                                <small>&lt; 25 ans</small>
+                            </div>
+                            <div class="membership-card" data-type="regular">
+                                <h4>Standard</h4>
+                                <p>1000 HTG/an</p>
+                                <small>18-60 ans</small>
+                            </div>
+                            <div class="membership-card" data-type="senior">
+                                <h4>Senior</h4>
+                                <p>750 HTG/an</p>
+                                <small>> 60 ans</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Paiement -->
+                    <div class="form-group">
+                        <h3><i class="fas fa-credit-card"></i> Paiement</h3>
+                        <div class="payment-methods">
+                            <div class="payment-card" data-method="mobile">
+                                <i class="fas fa-mobile-alt"></i>
+                                <p>Paiement Mobile</p>
+                            </div>
+                            <div class="payment-card" data-method="card">
+                                <i class="fas fa-credit-card"></i>
+                                <p>Carte Bancaire</p>
+                            </div>
+                            <div class="payment-card" data-method="cash">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <p>Espèces</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Engagement -->
+                    <div class="form-group">
+                        <label>
+                            <input type="checkbox" required>
+                            J'accepte le règlement intérieur et m'engage à respecter les valeurs du club
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">Devenir Membre</button>
+                </form>
+            </section>
+
+            <!-- Avantages -->
+            <aside class="benefits-sidebar">
+                <h3>Avantages des Membres</h3>
+                <ul class="benefits-list">
+                    <li>
+                        <i class="fas fa-ticket-alt"></i>
+                        Accès gratuit aux événements
+                    </li>
+                    <li>
+                        <i class="fas fa-book"></i>
+                        Formation continue
+                    </li>
+                        <i class="fas fa-percent"></i>
+                        Réductions partenaires
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i>
+                        Réseau professionnel
+                    </li>
+                    <li>
+                        <i class="fas fa-gift"></i>
+                        Cadeau de bienvenue
+                    </li>
+                </ul>
+
+                <div class="contact-info">
+                    <h3>Questions ?</h3>
+                    <p><i class="fas fa-phone"></i> (+509) 44 00 0000</p>
+                    <p><i class="fas fa-envelope"></i> adhesion@clubvicuh.ht</p>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Pied de page -->
+    <footer></footer>
+
+    <script>
+        // Sélection type de membre
+        document.querySelectorAll('.membership-card').forEach(card => {
+            card.addEventListener('click', function() {
+                document.querySelectorAll('.membership-card').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // Sélection méthode de paiement
+        document.querySelectorAll('.payment-card').forEach(card => {
+            card.addEventListener('click', function() {
+                document.querySelectorAll('.payment-card').forEach(c => c.classList.remove('selected'));
+                this.classList.add('selected');
+            });
+        });
+
+        // Validation du formulaire
+        document.getElementById('membershipForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validation des champs
+            const selectedMembership = document.querySelector('.membership-card.selected');
+            const selectedPayment = document.querySelector('.payment-card.selected');
+
+            if(!selectedMembership || !selectedPayment) {
+                alert('Veuillez sélectionner un type de membre et un mode de paiement');
+                return;
+            }
+
+            // Soumission simulée
+            const formData = new FormData(this);
+            const data = {
+                membershipType: selectedMembership.dataset.type,
+                paymentMethod: selectedPayment.dataset.method,
+                ...Object.fromEntries(formData)
+            };
+
+            console.log('Données soumises:', data);
+            alert('Merci pour votre inscription! Nous vous contacterons sous peu.');
+            this.reset();
+        });
+
+        // Animation des champs
+        document.querySelectorAll('input, select, textarea').forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.style.transform = 'scale(1.02)';
+            });
+            input.addEventListener('blur', function() {
+                this.parentElement.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-section">
+            <h3>Contactez-nous</h3>
+            <p>Route Nationale#1, Haut la Cour, l'Estère, Haïti</p>
+            <p>(+509 ) 43 07 8619 - 35 20 6456</p>
+            <p>clubvicuhh@gmail.com</p>
+            <div class="social-icons">
+                <a href="#" class="fab fa-facebook"></a>
+                <a href="#" class="fab fa-instagram"></a>
+                <a href="#" class="fab fa-youtube"></a>
+                <a href="#" class="fas fa-envelope"></a>
+            </div>
+        </div>
+
+        <div class="footer-section">
+            <h3>Liens rapides</h3>
+            <ul>
+                <li><a href="adhesion.html">Devenir membre</a></li>
+                <li><a href="agenda.html">Prochains événements</a></li>
+                <li><a href="archives.html">Galerie culturelle</a></li>
+                <li><a href="contact.html">Demande de partenariat</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h3>Notre Mission</h3>
+            <p>Promouvoir le patrimoine haïtien à travers des actions concrètes, soutenir la jeunesse et préserver notre identité culturelle pour les générations futures.</p>
+            <img src="drapo-ayiti.png" alt="Drapeau Haïtien" class="flag">
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <marquee behavior="alternate" direction="left">
+            🎶 "Ayiti cheri, se la vi nou genyen!" - Un peuple fort dans sa culture 🇭🇹
+        </marquee>
+        
+        <div class="legal">
+            <p>© <span id="current-year"></span> CLUB VICUH - Tous droits réservés</p>
+            <p><a href="politique.html">Politique de confidentialité</a> | <a href="conditions.html">Conditions d'utilisation</a></p>
+        </div>
+        
+        <button id="back-to-top" title="Remonter en haut">↑</button>
+    </div>
+</footer>
+
+<style>
+    footer {
+        background: #00209F;
+        color: white;
+        font-family: 'Arial', sans-serif;
+        margin-top: 50px;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        padding: 40px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+
+    .footer-section h3 {
+        color: #DA291C;
+        margin-bottom: 20px;
+        border-left: 4px solid #FFD700;
+        padding-left: 10px;
+    }
+
+    .footer-section p {
+        line-height: 1.6;
+        margin: 10px 0;
+    }
+
+    .social-icons {
+        margin-top: 20px;
+    }
+
+    .social-icons a {
+        color: white;
+        font-size: 24px;
+        margin-right: 15px;
+        transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+        color: #FFD700;
+    }
+
+    .footer-section ul {
+        list-style: none;
+    }
+
+    .footer-section ul li {
+        margin: 10px 0;
+    }
+
+    .footer-section ul li a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .footer-section ul li a:hover {
+        color: #FFD700;
+        text-decoration: underline;
+    }
+
+    .flag {
+        width: 100px;
+        margin-top: 15px;
+        border: 2px solid white;
+    }
+
+    .footer-bottom {
+        background: #0d1b3a;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+    }
+
+    .footer-bottom marquee {
+        color: #FFD700;
+        font-style: italic;
+        margin-bottom: 15px;
+    }
+
+    .legal {
+        margin: 15px 0;
+    }
+
+    .legal a {
+        color: #DA291C;
+        margin: 0 10px;
+    }
+
+    #back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #DA291C;
+        color: white;
+        border: none;
+        padding: 12px 15px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        transition: background 0.3s;
+    }
+
+    #back-to-top:hover {
+        background: #FFD700;
+    }
+
+    @media (max-width: 768px) {
+        .footer-content {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<script>
+    // Année actuelle
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // Bouton remonter en haut
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById('back-to-top').style.display = 'block';
+        } else {
+            document.getElementById('back-to-top').style.display = 'none';
+        }
+    };
+
+    document.getElementById('back-to-top').addEventListener('click', function() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // Animation au survol des liens
+    document.querySelectorAll('.footer-section a').forEach(link => {
+        link.addEventListener('mouseover', function() {
+            this.style.transform = 'translateX(5px)';
+        });
+        link.addEventListener('mouseout', function() {
+            this.style.transform = 'translateX(0)';
+        });
+    });
+</script>
